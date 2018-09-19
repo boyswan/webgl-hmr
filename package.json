@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "fpack": "^0.6.3",
+    "gl-matrix": "^2.8.1",
     "hot-server": "github:boyswan/hot-server"
   }
 }
