@@ -453,8 +453,8 @@ forwarded@~0.1.2:
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.1.2.tgz#98c23dab1175657b8c0573e8ceccd91b0ff18c84"
 
 fpack@^0.6.3:
-  version "0.6.3"
-  resolved "https://registry.yarnpkg.com/fpack/-/fpack-0.6.3.tgz#ce0d049283bbb5b8251b4b52dba41a07d15a9f20"
+  version "0.6.4"
+  resolved "https://registry.yarnpkg.com/fpack/-/fpack-0.6.4.tgz#40099766a2adf7826abde09715b94655818eead4"
 
 fragment-cache@^0.2.1:
   version "0.2.1"
