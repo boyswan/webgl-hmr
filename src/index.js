@@ -1,27 +1,18 @@
 import { vert, frag } from './shaders';
 import {
-  attachBuffer,
+  initContext,
   initBuffer,
-  clearCanvas,
+  initProgramInfo,
   initShaderProgram,
-  initViewMatrices
+  initViewMatrices,
+  attachBuffer
 } from './utils';
 
-const canvas = document.querySelector('#glCanvas');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+const info = ['uColor'];
 
-const gl = canvas.getContext('webgl');
-window.gl = gl;
-
+const gl = initContext();
 const shaderProgram = initShaderProgram(gl, vert, frag);
-
-const programInfo = {
-  vertexPosition: gl.getAttribLocation(shaderProgram, 'aVertexPosition'),
-  projectionMatrix: gl.getUniformLocation(shaderProgram, 'uProjectionMatrix'),
-  modelViewMatrix: gl.getUniformLocation(shaderProgram, 'uModelViewMatrix'),
-  color: gl.getUniformLocation(shaderProgram, 'uColor')
-};
+const programInfo = initProgramInfo(gl, shaderProgram, info);
 
 initViewMatrices(gl, shaderProgram, programInfo);
 
@@ -30,19 +21,19 @@ const color = [
   0.0, 255.0, 255.0
 ];
 
-gl.uniform3fv(programInfo.color, color);
+gl.uniform3fv(programInfo.uColor, color);
 
 /*prettier-ignore*/
 const positions = [
   -1.0,  1.0,
-   1.0,  1.0,
+  1.0,  1.0,
   -1.0, -1.0,
-   1.0, -1.0,
-
+  1.0, -1.0,
+  
   -2.0,  2.0,
-   2.0,  2.0,
+  2.0,  2.0,
   -2.0, -2.0,
-   2.0, -2.0,
+  2.0, -2.0,
 ];
 
 const buffers = {
@@ -54,5 +45,3 @@ const first = 0;
 const count = positions.length / iter2;
 attachBuffer(gl, programInfo, buffers.position, iter2);
 gl.drawArrays(gl.LINE_STRIP, first, count);
-
-console.log('ok');

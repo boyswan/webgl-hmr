@@ -1,22 +1,22 @@
 import { mat4 } from 'gl-matrix';
 
-export const checkShaderSafe = (shader, gl) => {
-  let msg = 'An error occurred compiling the shaders: ';
-  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    console.error(msg + gl.getShaderInfoLog(shader));
-    gl.deleteShader(shader);
-    return null;
-  }
-  return shader;
+export const initContext = () => {
+  const canvas = document.querySelector('#glCanvas');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const gl = canvas.getContext('webgl');
+  window.gl = gl;
+  return gl;
 };
 
-export const checkProgramSafe = (shaderProgram, gl) => {
-  let msg = 'Unable to initialize the shader program: ';
-  if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
-    console.error(msg + gl.getProgramInfoLog(shaderProgram));
-    return null;
-  }
-  return shaderProgram;
+export const initProgramInfo = (gl, shaderProgram, info) => {
+  const location = v => {
+    if (v[0] == 'a') return gl.getAttribLocation(shaderProgram, v);
+    if (v[0] == 'u') return gl.getUniformLocation(shaderProgram, v);
+  };
+  return info
+    .concat(['aVertexPosition', 'uProjectionMatrix', 'uModelViewMatrix'])
+    .reduce((acc, v) => Object.assign(acc, { [v]: location(v) }), {});
 };
 
 export const initShaderProgram = (gl, vert, frag) => {
@@ -26,20 +26,20 @@ export const initShaderProgram = (gl, vert, frag) => {
   gl.attachShader(shaderProgram, vertexShader);
   gl.attachShader(shaderProgram, fragmentShader);
   gl.linkProgram(shaderProgram);
-  return checkProgramSafe(shaderProgram, gl);
+  return shaderProgram;
 };
 
 export const loadShader = (gl, type, source) => {
   const shader = gl.createShader(type);
   gl.shaderSource(shader, source);
   gl.compileShader(shader);
-  return checkShaderSafe(shader, gl);
+  return shader;
 };
 
 export const initViewMatrices = (gl, shaderProgram, programInfo) => {
   clearCanvas(gl);
-  const progProjecMatrix = programInfo.projectionMatrix;
-  const progModelMatrix = programInfo.modelViewMatrix;
+  const progProjecMatrix = programInfo.uProjectionMatrix;
+  const progModelMatrix = programInfo.uModelViewMatrix;
   const modelViewMatrix = mat4.create();
   const projectionMatrix = mat4.create();
   const fieldOfView = (45 * Math.PI) / 180;
@@ -69,20 +69,12 @@ export const initBuffer = (gl, matrix, type) => {
 };
 
 export const attachBuffer = (gl, programInfo, buffer, iter) => {
-  const numComponents = iter; // pull out 2 values per iteration
   const type = gl.FLOAT; // the data in the buffer is 32bit floats
   const normalize = false; // don't normalize
   const stride = 0; // how many bytes to get from one set of values to the next
   const offset = 0; // how many bytes inside the buffer to start from
-
+  const vertPos = programInfo.aVertexPosition;
   gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-  gl.vertexAttribPointer(
-    programInfo.vertexPosition,
-    numComponents,
-    type,
-    normalize,
-    stride,
-    offset
-  );
-  gl.enableVertexAttribArray(programInfo.vertexPosition);
+  gl.vertexAttribPointer(vertPos, iter, type, normalize, stride, offset);
+  gl.enableVertexAttribArray(vertPos);
 };
