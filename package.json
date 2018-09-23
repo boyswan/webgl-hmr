@@ -9,6 +9,7 @@
     "serve": "hot-server --path=public"
   },
   "dependencies": {
+    "bunny": "^1.0.1",
     "fpack": "^0.6.3",
     "gl-matrix": "^2.8.1",
     "hot-server": "github:boyswan/hot-server"

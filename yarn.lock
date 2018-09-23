@@ -150,6 +150,10 @@ braces@^2.3.1:
     split-string "^3.0.2"
     to-regex "^3.0.1"
 
+bunny@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/bunny/-/bunny-1.0.1.tgz#86383da45ab7a99571a5a572b7be0e3564815f9e"
+
 bytes@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.0.0.tgz#d32815404d689699f85a4ea4fa8755dd13a96048"
