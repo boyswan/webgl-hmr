@@ -457,8 +457,8 @@ forwarded@~0.1.2:
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.1.2.tgz#98c23dab1175657b8c0573e8ceccd91b0ff18c84"
 
 fpack@^0.6.3:
-  version "0.6.4"
-  resolved "https://registry.yarnpkg.com/fpack/-/fpack-0.6.4.tgz#40099766a2adf7826abde09715b94655818eead4"
+  version "0.6.5"
+  resolved "https://registry.yarnpkg.com/fpack/-/fpack-0.6.5.tgz#a685f18e1e9745cf2324c9616e70377705517ef9"
 
 fragment-cache@^0.2.1:
   version "0.2.1"
@@ -930,8 +930,8 @@ nanomatch@^1.2.9:
     to-regex "^3.0.1"
 
 needle@^2.2.1:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/needle/-/needle-2.2.3.tgz#c1b04da378cd634d8befe2de965dc2cfb0fd65ca"
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/needle/-/needle-2.2.4.tgz#51931bff82533b1928b7d1d69e01f1b00ffd2a4e"
   dependencies:
     debug "^2.1.2"
     iconv-lite "^0.4.4"

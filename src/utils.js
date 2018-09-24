@@ -14,9 +14,7 @@ export const initProgramInfo = (gl, shaderProgram, info) => {
     if (v[0] == 'a') return gl.getAttribLocation(shaderProgram, v);
     if (v[0] == 'u') return gl.getUniformLocation(shaderProgram, v);
   };
-  return info
-    .concat(['aVertexPosition', 'uProjectionMatrix', 'uModelViewMatrix'])
-    .reduce((acc, v) => Object.assign(acc, { [v]: location(v) }), {});
+  return info.reduce((acc, v) => Object.assign(acc, { [v]: location(v) }), {});
 };
 
 export const initShaderProgram = (gl, vert, frag) => {
@@ -47,7 +45,7 @@ export const initViewMatrices = (gl, shaderProgram, programInfo) => {
   const zNear = 0.1;
   const zFar = 100.0;
   mat4.perspective(projectionMatrix, fieldOfView, aspect, zNear, zFar);
-  mat4.translate(modelViewMatrix, modelViewMatrix, [-0.0, 0.0, -6.0]);
+  mat4.translate(modelViewMatrix, modelViewMatrix, [-0.0, -3.0, -30.0]);
   gl.useProgram(shaderProgram);
   gl.uniformMatrix4fv(progProjecMatrix, false, projectionMatrix);
   gl.uniformMatrix4fv(progModelMatrix, false, modelViewMatrix);
@@ -64,7 +62,7 @@ export const clearCanvas = gl => {
 export const initBuffer = (gl, matrix, type) => {
   const buffer = gl.createBuffer();
   gl.bindBuffer(type, buffer);
-  gl.bufferData(type, new Float32Array(matrix), gl.STATIC_DRAW);
+  gl.bufferData(type, matrix, gl.STATIC_DRAW);
   return buffer;
 };
 
