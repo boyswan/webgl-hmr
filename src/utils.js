@@ -35,7 +35,6 @@ export const loadShader = (gl, type, source) => {
 };
 
 export const initViewMatrices = (gl, shaderProgram, programInfo) => {
-  clearCanvas(gl);
   const progProjecMatrix = programInfo.uProjectionMatrix;
   const progModelMatrix = programInfo.uModelViewMatrix;
   const modelViewMatrix = mat4.create();
