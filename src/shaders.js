@@ -4,6 +4,7 @@ export const vert = glsl`
   uniform mat4 uModelViewMatrix;
   uniform mat4 uProjectionMatrix;
   uniform float uTime;
+  uniform float uRand;
 
   attribute vec4 aPosition;
   attribute vec3 aNormal;

@@ -44,7 +44,7 @@ export const initViewMatrices = (gl, shaderProgram, programInfo) => {
   const zNear = 0.1;
   const zFar = 100.0;
   mat4.perspective(projectionMatrix, fieldOfView, aspect, zNear, zFar);
-  mat4.translate(modelViewMatrix, modelViewMatrix, [-0.0, -3.0, -30.0]);
+  mat4.translate(modelViewMatrix, modelViewMatrix, [-5.0, -5.0, -30.0]);
   gl.useProgram(shaderProgram);
   gl.uniformMatrix4fv(progProjecMatrix, false, projectionMatrix);
   gl.uniformMatrix4fv(progModelMatrix, false, modelViewMatrix);
