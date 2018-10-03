@@ -30,6 +30,6 @@ export const frag = glsl`
     vec3 color = uColor;
     vec3 adj = normalize(vNormal) * 0.5 + 0.5;
     adj.xz += sin(uTime);
-    gl_FragColor = vec4(adj, 1.0);
+    gl_FragColor = vec4(uColor, 1.0);
   }
 `;
