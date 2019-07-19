@@ -7,7 +7,6 @@ export const vert = glsl`
 
   void main() {
     gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
-    gl_PointSize = 10.0;
   }
 `;
 
