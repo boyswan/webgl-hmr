@@ -9,7 +9,7 @@
     "serve": "hot-server --path=public"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bunny": "^1.0.1",
     "fpack": "^0.6.3",
     "gl-matrix": "^2.8.1",
